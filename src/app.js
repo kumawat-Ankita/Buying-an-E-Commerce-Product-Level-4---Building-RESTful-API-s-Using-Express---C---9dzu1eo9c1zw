@@ -2,15 +2,19 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
+
 // Importing products from products.json file
 const products = JSON.parse(
-  fs.readFileSync(`${__dirname}/data/products.json`)
+    fs.readFileSync(`${__dirname}/data/product.json`)
 );
+
 
 // Middlewares
 app.use(express.json());
 
-// PATCH endpoint to buy a product
+// Write PATCH endpoint to buy a product for the client here
+// Endpoint /api/v1/products/:id
+
 app.patch('/api/v1/products/:id', (req, res) => {
   const productId = parseInt(req.params.id);
   
@@ -40,5 +44,6 @@ app.patch('/api/v1/products/:id', (req, res) => {
     "product": updatedProduct
   });
 });
+
 
 module.exports = app;
